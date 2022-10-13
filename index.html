@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <title>Title</title>
+</head>
+<body>
+<section class="musicPlayer">
+    <div class="container">
+        <img src="./img/logo.jpg" alt="singer pic" id="logo">
+        <div class="title">
+            <div class="englishTitle">
+                <p id="englishTitle--artist">Ali Zand Vakili</p>
+                <p id="englishTitle--album">Royaye bi Tekrar</p>
+                <p id="englishTitle--song">Atash Dar Aab</p>
+            </div>
+            <div class="persianTitle">
+                <p id="persianTitle--artist">علی زند وکیلی</p>
+                <p id="persianTitle--album">رویای بی تکرار</p>
+                <p id="persianTitle--song">آتش در آب</p>
+            </div>
+        </div>
+    </div>
+    <div class="likes">
+        <p><i id="like" class="bi bi-suit-heart-fill"></i><span id="likes">3900</span> Likes</p>
+    </div>
+    <audio src="./music/music1.mp3" id="audio"></audio>
+    <div class="progress">
+        <span class="current-time">00:00</span>
+            <div class="prgBar progress-container">
+            <div id="progress" class="progress"></div>
+            </div>
+        <span class="song-duration">00:00</span>
+    </div>
+    <div class="icons">
+        <button><i class="bi bi-repeat"></i></button>
+        <button onclick="preMusic()"><i class="bi bi-skip-backward"></i></button>
+        <button><i class="bi bi-play-fill" id="play"></i></button>
+        <button onclick="nextMusic()"><i class="bi bi-skip-forward"></i></button>
+        <button><i class="bi bi-plus-lg"></i></button>
+        <i class="bi bi-volume-down-fill"></i>
+        <input type="range" id="vol" min="0" max="1" step="0.01" onchange="changevolume(this.value)">
+        <i class="bi bi-volume-up-fill"></i>
+    </div>
+</section>
+<script src="main.js"></script>
+</body>
+</html>

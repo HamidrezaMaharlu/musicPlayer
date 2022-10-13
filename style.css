@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+
+.musicPlayer {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+#logo {
+    width: 80%;
+    height: 80%;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 8px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin-left: 10px;
+}
+
+.persianTitle {
+    margin-top: 20px;
+}
+
+.likes {
+    margin-top: -1vh;
+    text-align: center;
+}
+
+.bi {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.bi-suit-heart-fill {
+    color: red;
+}
+.bi-play-fill,.bi-pause-fill{
+    font-size: 32px;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.progress-container {
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0;
+    height: 4px;
+    width: 100%;
+}
+#progress {
+    background-color: red;
+    border-radius: 5px;
+    width: 0;
+    height: 100%;
+    transition: all .4s;
+}
+.progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.vol {
+    height: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 1px 15px;
+    background-color: gray;
+}
+
+button {
+    background: black;
+    color: white;
+
+}
+#persianTitle--album, #englishTitle--album {
+    color: lightgray;
+}
+
+#persianTitle--singer, #englishTitle--singer {
+    color: gray;
+}
+.current-time,.song-duration {
+    margin: 0 10px;
+}
