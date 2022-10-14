@@ -85,7 +85,8 @@ p {
 
 
 .vol {
-    height: 5px;
+
+    height: 2px;
     border-radius: 8px;
     cursor: pointer;
     margin: 1px 15px;
@@ -106,4 +107,6 @@ button {
 }
 .current-time,.song-duration {
     margin: 0 10px;
+    min-width: 50px;
+    max-width: 50px;
 }

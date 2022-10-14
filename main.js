@@ -33,13 +33,14 @@ const currTime = document.body.querySelector(".current-time")
 const durTime = document.body.querySelector(".song-duration");
 const progress = document.body.querySelector(".progress-container")
 const proBar = document.body.querySelector("#progress")
-const heart =document.body.querySelector("#like")
-const like =document.body.querySelector("#likes")
+const heart = document.body.querySelector("#like")
+const like = document.body.querySelector("#likes")
+const repeat = document.getElementById("repeat")
 
 let songIndex = 0;
 loadSong(music[songIndex])
 
-function loadSong({artistEn, albumEn, musicEn, artistFa, albumFa, musicFa, src, logo}) {
+function loadSong({artistEn = "not available", albumEn, musicEn, artistFa, albumFa, musicFa, src, logo}) {
     singerEn.innerHTML = artistEn;
     songEn.innerHTML = musicEn;
     titleEn.innerHTML = albumEn;
@@ -74,7 +75,7 @@ function preMusic() {
 
 function nextMusic() {
     songIndex++
-    if (songIndex > music.length) songIndex = 0
+    if (songIndex > music.length - 1) songIndex = 0
     loadSong(music[songIndex])
     playMusic()
 
@@ -85,6 +86,7 @@ function updateProgBar(event) {
     const percent = (currentTime / duration) * 100;
     proBar.style.width = `${percent}%`
 }
+
 function changevolume(amount) {
     const audioObject = document.getElementById("audio");
     audioObject.volume = amount;
@@ -112,8 +114,9 @@ function duration(event) {
 
     let minDuration = (isNaN(duration)) ? 0 : Math.floor(duration / 60);
     minDuration = minDuration < 10 ? "0" + minDuration : minDuration;
+
     function getSecondDuration(x) {
-        if(isNaN(x)) secDuration="00"
+        if (isNaN(x)) secDuration = "00"
         else {
             if (Math.floor(x) >= 60) {
                 secDuration = Math.round(x % 60);
@@ -132,6 +135,13 @@ function duration(event) {
 
 }
 
+function setProgressbyClick(event) {
+    const width = this.clientWidth
+    const locationMyClick = event.offsetX;
+    const duration = audio.duration
+    audio.currentTime = (locationMyClick / width) * duration;
+}
+
 play.addEventListener("click", () => {
     const isPlaying = progress.classList.contains("playing")
     if (isPlaying) {
@@ -140,19 +150,32 @@ play.addEventListener("click", () => {
         playMusic()
     }
 })
-heart.addEventListener("click",()=>{
-    const fill=heart.classList.contains("bi-suit-heart-fill")
+heart.addEventListener("click", () => {
+    const fill = heart.classList.contains("bi-suit-heart-fill")
     if (fill) {
         heart.classList.remove("bi-suit-heart-fill");
         heart.classList.add("bi-suit-heart");
-        like.innerHTML="3899"
+        like.innerHTML = "3899"
     } else {
         heart.classList.remove("bi-suit-heart");
         heart.classList.add("bi-suit-heart-fill");
-        like.innerHTML="3900"
+        like.innerHTML = "3900"
     }
 })
 
+repeat.addEventListener("click", () => {
+    const active = repeat.classList.contains("bi-repeat");
+    if (active) {
+        repeat.classList.remove("bi-repeat");
+        repeat.classList.add("bi-repeat-1");
+        audio.loop = true
+    } else {
+        repeat.classList.remove("bi-repeat-1");
+        repeat.classList.add("bi-repeat");
+        audio.loop = false
+    }
+})
+progress.addEventListener("click",setProgressbyClick)
 audio.addEventListener("timeupdate", updateProgBar)
 audio.addEventListener("ended", nextMusic)
 audio.addEventListener("timeupdate", duration)

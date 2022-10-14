@@ -32,14 +32,14 @@
     </div>
     <audio src="./music/music1.mp3" id="audio"></audio>
     <div class="progress">
-        <span class="current-time">00:00</span>
+        <div class="current-time">00:00</div>
             <div class="prgBar progress-container">
             <div id="progress" class="progress"></div>
             </div>
-        <span class="song-duration">00:00</span>
+        <div class="song-duration">00:00</div>
     </div>
     <div class="icons">
-        <button><i class="bi bi-repeat"></i></button>
+        <button><i id="repeat" class="bi bi-repeat"></i></button>
         <button onclick="preMusic()"><i class="bi bi-skip-backward"></i></button>
         <button><i class="bi bi-play-fill" id="play"></i></button>
         <button onclick="nextMusic()"><i class="bi bi-skip-forward"></i></button>
