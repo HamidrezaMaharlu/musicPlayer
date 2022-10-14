@@ -40,6 +40,7 @@ const repeat = document.getElementById("repeat")
 let songIndex = 0;
 loadSong(music[songIndex])
 
+//update the data of the song
 function loadSong({artistEn = "not available", albumEn, musicEn, artistFa, albumFa, musicFa, src, logo}) {
     singerEn.innerHTML = artistEn;
     songEn.innerHTML = musicEn;
@@ -50,9 +51,11 @@ function loadSong({artistEn = "not available", albumEn, musicEn, artistFa, album
     audio.src = src;
     cover.src = logo;
 }
-
+//run the music
 function playMusic() {
+    //add class play to parent and check playing or not in add event listener
     progress.classList.add("playing")
+    //change the icon
     play.classList.remove("bi-play-fill");
     play.classList.add("bi-pause-fill");
     audio.play()
@@ -67,6 +70,7 @@ function pauseMusic() {
 
 function preMusic() {
     --songIndex
+    //check if it is the first song in list update the index to last item for have a loop
     if (songIndex < 0) songIndex = music.length - 1
     loadSong(music[songIndex])
     playMusic()
@@ -75,6 +79,7 @@ function preMusic() {
 
 function nextMusic() {
     songIndex++
+    //check if it is the last song in list update the index to first item for have a loop
     if (songIndex > music.length - 1) songIndex = 0
     loadSong(music[songIndex])
     playMusic()
@@ -82,12 +87,15 @@ function nextMusic() {
 }
 
 function updateProgBar(event) {
+    //get duration and current Time from audio obj
     const {duration, currentTime} = event.srcElement;
     const percent = (currentTime / duration) * 100;
+    //calc width of progressbar and update it
     proBar.style.width = `${percent}%`
 }
 
 function changevolume(amount) {
+    //get valye from silde range by change and set it audio object
     const audioObject = document.getElementById("audio");
     audioObject.volume = amount;
 }
@@ -134,11 +142,14 @@ function duration(event) {
     durTime.innerHTML = minDuration + ":" + secDuration;
 
 }
-
+// set the progressbar by click on it and go to the selected time
 function setProgressbyClick(event) {
+    //get the width of parent
     const width = this.clientWidth
+    //get the location of click in X  Ax
     const locationMyClick = event.offsetX;
     const duration = audio.duration
+    //update the current time
     audio.currentTime = (locationMyClick / width) * duration;
 }
 
@@ -175,6 +186,7 @@ repeat.addEventListener("click", () => {
         audio.loop = false
     }
 })
+//add event to progress bar to set it doesn't work by onclick;
 progress.addEventListener("click",setProgressbyClick)
 audio.addEventListener("timeupdate", updateProgBar)
 audio.addEventListener("ended", nextMusic)

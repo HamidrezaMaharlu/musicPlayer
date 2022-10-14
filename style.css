@@ -83,7 +83,10 @@ p {
 }
 
 
-
+button {
+    outline: none;
+    border: none;
+}
 .vol {
 
     height: 2px;
